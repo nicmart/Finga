@@ -23,12 +23,20 @@ class CompositeFingerPrinter implements FingerPrinterInterface
     private $fingerPrinters;
 
     /**
+     * Add a fingerprinter. An optional prefix can be provided. If not empty, the $fingerPritner
+     * will be decorated with a PrefixedFingerPrinter object that has that prefix.
+     *
      * @param FingerPrinterInterface $fingerPrinter
+     * @param string $prefix
      * @return CompositeFingerPrinter
      */
-    public function add(FingerPrinterInterface $fingerPrinter)
+    public function add(FingerPrinterInterface $fingerPrinter, $prefix = '')
     {
-        $this->fingerPrinters[] = $fingerPrinter;
+        if ($prefix) {
+            $this->fingerPrinters[] = new PrefixedFingerPrinter($prefix, $fingerPrinter);
+        } else {
+            $this->fingerPrinters[] = $fingerPrinter;
+        }
 
         return $this;
     }

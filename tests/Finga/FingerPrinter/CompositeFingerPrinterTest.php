@@ -103,6 +103,25 @@ class CompositeFingerPrinterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array($this->fingerPrinters[0], $this->fingerPrinters[1]), $this->compositeFP->getFingerPrinters());
     }
 
+    public function testAddWithPrefixDecorateWithAPrefixedFingerPrinter()
+    {
+        $this->compositeFP
+            ->add($this->fingerPrinters[0], 'f0')
+            ->add($this->fingerPrinters[1], 'f1')
+        ;
+
+        foreach ($this->compositeFP->getFingerPrinters() as $fingerPrinter) {
+            $this->assertInstanceOf('\\Finga\\FingerPrinter\\PrefixedFingerPrinter', $fingerPrinter);
+        }
+    }
+
+    public function testAddWithPrefix()
+    {
+        $this->compositeFP->add($this->fingerPrinters[0], 'prefix:');
+
+        $this->assertEquals('prefix:f0', $this->compositeFP->fingerPrint('any value'));
+    }
+
     public function testFingerprint()
     {
         $this->compositeFP->setFingerPrinters($this->fingerPrinters);
