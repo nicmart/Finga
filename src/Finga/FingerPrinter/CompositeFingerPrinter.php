@@ -15,9 +15,6 @@ namespace Finga\FingerPrinter;
  * @package    Finga
  * @author     Nicolò Martini <nicmartnic@gmail.com>
  */
-/**
- *
- */
 class CompositeFingerPrinter implements FingerPrinterInterface
 {
     /**
