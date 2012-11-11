@@ -1,0 +1,24 @@
+{
+    "name": "nicmart/finga",
+    "type": "library",
+    "description": "An highly decoupled PHP library for fingerprinting php values",
+    "keywords": ["fingerprint", "php", "object comparison"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nicolò Martini",
+            "email": "nicmartnic@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+
+    },
+    "autoload": {
+        "psr-0": {
+            "MainNamespace": "src/",
+            "MainNamespace\\Test": "tests"
+        }
+    }
+}
+
